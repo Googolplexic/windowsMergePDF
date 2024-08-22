@@ -1,5 +1,7 @@
 # windowsMergePDF
-Created using AI assistance.
+Created using AI assistance. 
+
+.exe file in releases
 
 To add to context menu via "Send To": 
    To add the executable to the "Send To" menu:
