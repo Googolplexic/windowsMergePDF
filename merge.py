@@ -86,11 +86,15 @@ class PDFMergerApp:
 def main():
     if len(sys.argv) > 1:
         files = sys.argv[1:]
-        root = tk.Tk()
-        app = PDFMergerApp(root, files)
-        root.mainloop()
     else:
-        print("No PDF files provided.")
+        files = filedialog.askopenfilenames(
+            title="Select PDFs to Merge", filetypes=[("PDF files", "*.pdf")]
+        )
+        if not files:
+            return
+    root = tk.Tk()
+    app = PDFMergerApp(root, files)
+    root.mainloop()
 
 
 if __name__ == "__main__":
