@@ -1,7 +1,7 @@
 # windowsMergePDF
 Created using AI assistance. 
 
-.exe file in releases
+.exe file in [releases](https://github.com/Googolplexic/windowsMergePDF/releases/tag/1.0)
 
 To add to context menu via "Send To": 
    To add the executable to the "Send To" menu:
