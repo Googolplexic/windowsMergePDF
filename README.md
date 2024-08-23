@@ -1,5 +1,5 @@
 # windowsMergePDF
-Created using AI assistance. 
+Python program; created using AI assistance. 
 
 .exe file in [releases](https://github.com/Googolplexic/windowsMergePDF/releases/tag/1.0)
 
