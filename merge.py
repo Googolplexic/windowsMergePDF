@@ -27,8 +27,23 @@ def merge_pdfs(pdf_files, output_path="merged_output.pdf"):
 class PDFMergerApp:
     def __init__(self, root, files):
         self.root = root
-        self.files = files
+        self.files = list(files)
         self.root.title("PDF Merger")
+
+        # Set window size and position
+        screen_width = self.root.winfo_screenwidth()
+        screen_height = self.root.winfo_screenheight()
+        window_width = 400
+        window_height = 300
+
+        # Calculate the position to place the window at the top
+        x_position = (screen_width - window_width) // 2
+        y_position = 0  # Top of the screen
+
+        self.root.geometry(f"{window_width}x{window_height}+{x_position}+{y_position}")
+
+        # Keep the window on top of other windows
+        self.root.attributes("-topmost", True)
 
         # Create and place widgets
         self.listbox = tk.Listbox(root, selectmode=tk.SINGLE)
@@ -45,8 +60,12 @@ class PDFMergerApp:
         )
         self.move_down_button.pack(side=tk.LEFT, padx=5)
 
+        self.add_files = tk.Button(root, text="Add Files", command=self.add_files)
+        self.add_files.pack(side=tk.LEFT, padx=5)
+
         self.merge_button = tk.Button(root, text="Merge PDFs", command=self.merge_files)
         self.merge_button.pack(pady=10)
+
 
     def move_up(self):
         selection = self.listbox.curselection()
@@ -70,6 +89,14 @@ class PDFMergerApp:
                 self.listbox.insert(index + 1, os.path.basename(file))
                 self.listbox.select_set(index + 1)
 
+    def add_files(self):
+        # Allow users to add more PDF files
+        new_files = filedialog.askopenfilenames(filetypes=[("PDF Files", "*.pdf")])
+        for file in new_files:
+            if file not in self.files:
+                self.files.append(file)
+                self.listbox.insert(tk.END, os.path.basename(file))
+
     def merge_files(self):
         if not self.files:
             messagebox.showwarning("Warning", "No files to merge.")
@@ -80,7 +107,7 @@ class PDFMergerApp:
         )
         if output_file:
             merge_pdfs(self.files, output_file)
-            self.root.destroy()  # Close the GUI window after merging
+            self.root.destroy()
 
 
 def main():
