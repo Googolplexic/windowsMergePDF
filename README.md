@@ -10,3 +10,15 @@ To add to context menu via "Send To":
    - **Create a Shortcut**:
      - Right-click inside the "Send To" folder and select **New > Shortcut**.
      - Browse to the location of the executable and select to.
+
+To add to context menu via registry editor (only select one file then add the rest later when reordering)
+
+   - Open the Registry Editor (`regedit`).
+   - Navigate to `HKEY_CLASSES_ROOT\*\shell`.
+   - Create a new key named `Merge PDFs`.
+   - Inside the `Merge PDFs` key, create another key named `command`.
+   - Set the `command` key's default value to the path of your executable with `%1` as an argument placeholder.
+    For example, if your executable is located at `C:\Scripts\merge_pdfs.exe`:
+   ```
+   C:\Scripts\merge_pdfs.exe "%1" output.pdf
+   ```
