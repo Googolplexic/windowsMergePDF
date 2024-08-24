@@ -66,7 +66,6 @@ class PDFMergerApp:
         self.merge_button = tk.Button(root, text="Merge PDFs", command=self.merge_files)
         self.merge_button.pack(pady=10)
 
-
     def move_up(self):
         selection = self.listbox.curselection()
         if selection:
@@ -113,6 +112,9 @@ class PDFMergerApp:
 def main():
     if len(sys.argv) > 1:
         files = sys.argv[1:]
+        for file in files:
+            if not file.lower().endswith(".pdf"):
+                files.remove(file)
     else:
         files = filedialog.askopenfilenames(
             title="Select PDFs to Merge", filetypes=[("PDF files", "*.pdf")]
